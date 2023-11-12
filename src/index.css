@@ -110,7 +110,7 @@ h1 {
 
 .player-name {
   display: inline-block;
-  width: 10rem;
+  width: 10rem; 
   font-size: 1rem;
   color: #e1dec7;
   text-transform: uppercase;

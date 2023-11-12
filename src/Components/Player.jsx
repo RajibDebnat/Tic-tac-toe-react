@@ -1,8 +1,9 @@
 import React, { useState } from "react";
 // import 'useState' from React
 
-export default function player({ initialPlayerName, playerSymbole }) {
+export default function player({ initialPlayerName, playerSymbole, isActive }) {
   const [isEditing, setIsEditing] = useState(false);
+  const [playerName, setPlayerName] = useState(initialPlayerName);
   function editHandler(event) {
     event.preventDefault();
 
@@ -15,7 +16,6 @@ export default function player({ initialPlayerName, playerSymbole }) {
     // realtime data    edit data
     // setIsEditing((previousValue)=>   !previousValue);
   }
-  const [playerName, setPlayerName] = useState(initialPlayerName);
   const inputHandler = function (event) {
     const inputedValue = event.target.value;
 
@@ -23,7 +23,7 @@ export default function player({ initialPlayerName, playerSymbole }) {
   };
   return (
     <>
-      <li>
+      <li className={isActive ? "active" : undefined}>
         <span className="player">
           {isEditing ? (
             <input

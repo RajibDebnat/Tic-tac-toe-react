@@ -6,24 +6,25 @@ const initialGameBoard = [
   [null, null, null],
 ];
 // dynamicly got the html
-const GameBoard = function () {
-  const [gameBoard, setGameBoard] = useState(initialGameBoard);
-  function hadnleSelectGameBoard(rowIndex, colIndex) {
+const GameBoard = function ({ onSelectPlayer }) {
+ 
+  // const [gameBoard, setGameBoard] = useState(initialGameBoard);
+  // function hadnleSelectGameBoard(rowIndex, colIndex) {
     // so here i can't manupulate all value directly from initialGameBoard therefor i have to use previous Value of state using this inserted function bellow
-    setGameBoard((previousSelfInitialGameBoard) => {
+  //   setGameBoard((previousSelfInitialGameBoard) => {
       // i should not mutate it directly
       // make a copy of this initialGameBoard
-      const updateBoard1 = initialGameBoard.slice();
-      updateBoard1[rowIndex][colIndex] = "X";
-      console.log(updateBoard1);
+  //     const updateBoard1 = initialGameBoard.slice();
+      // updateBoard1[rowIndex][colIndex] = "X";
+      // console.log(updateBoard1);
       // const updateBoard = [
       //   ...previousSelfInitialGameBoard.map((innerArray) => [...innerArray]),
       // ];
-
-      updateBoard1[rowIndex][colIndex] = "X";
-      return updateBoard1;
-    });
-  }
+  //     updateBoard1[rowIndex][colIndex] = actPlayer;
+  //     return updateBoard1;
+  //   });
+  //   onSelectPlayer();     
+  // }
   return (
     <ol id="game-board">
       {gameBoard.map((row, rowIndex) => (
@@ -32,7 +33,7 @@ const GameBoard = function () {
             {row.map((playerName, colIndex) => (
               <li key={colIndex}>
                 <button
-                  onClick={() => hadnleSelectGameBoard(rowIndex, colIndex)}
+                  onClick={onSelectPlayer}
                 >
                   {playerName}
                 </button>
@@ -44,5 +45,5 @@ const GameBoard = function () {
     </ol>
   );
 };
-# Get the good key from enviroment variable 
+
 export default GameBoard;
