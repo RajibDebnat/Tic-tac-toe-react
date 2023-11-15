@@ -1,21 +1,10 @@
 import { useState } from "react";
 import player from "./player";
 // **** objects and arrays(which technically are objects) are reference values in javscript  You should therefore not mutate them directly instead creat a deep copy
-const initialGameBoard = [
-  [null, null, null],
-  [null, null, null],
-  [null, null, null],
-];
-// dynamicly got the html
-const GameBoard = function ({ onSelectPlayer, turns }) {
-  let gameBoard = initialGameBoard;
-  for (const turn of turns) {
-    const { buttonIndexs, player} = turn;
-    const { row, col } = buttonIndexs;
- 
 
-    gameBoard[row][col] = player;
-  }
+// dynamicly got the html
+const GameBoard = function ({ onSelectPlayer, board }) {
+
 
   // const [gameBoard, setGameBoard] = useState(initialGameBoard);
   // function hadnleSelectGameBoard(rowIndex, colIndex) {
@@ -36,7 +25,7 @@ const GameBoard = function ({ onSelectPlayer, turns }) {
   // }
   return (
     <ol id="game-board">
-      {gameBoard.map((row, rowIndex) => (
+      {board.map((row, rowIndex) => (
         <li key={rowIndex}>
           <ol>
             {row.map((playerName, colIndex) => (
