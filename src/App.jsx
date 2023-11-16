@@ -18,10 +18,11 @@ const deeriveGameTurns = (gameTurns) => {
 };
 
 function App() {
-  let winner;
+  const [players, setPlayers] = useState({ X: "Player 1", O: "Player 2" });
   const [gameTurns, setGameTurns] = useState([]);
   // const [activePlayer, setActivePlayer] = useState("X");
   const activePlayer = deeriveGameTurns(gameTurns);
+  let winner;
 
   let gameBoard = [...initialGameBoard.map((array) => [...array])];
   for (const turn of gameTurns) {
@@ -38,7 +39,7 @@ function App() {
     const thirdSquar = gameBoard[combination[2].row][combination[2].column];
     console.log(firstSquar, secondSquar, thirdSquar);
     if (firstSquar && firstSquar === secondSquar && firstSquar === thirdSquar) {
-      winner = firstSquar;
+      winner = players[firstSquar];
     }
   }
   const hasDraw = gameTurns.length === 9 && !winner;
@@ -62,6 +63,14 @@ function App() {
   function handleReset() {
     setGameTurns([]);
   }
+  function handlePlayers(symbol, newPlayerName) {
+    setPlayers((prevPlayers) => {
+      return {
+        ...prevPlayers,
+        [symbol]: newPlayerName,
+      };
+    });
+  }
   return (
     <main>
       <div id="game-container">
@@ -71,11 +80,13 @@ function App() {
             initialPlayerName="Player 1"
             playerSymbole="X"
             isActive={activePlayer === "X"}
+            players={handlePlayers}
           />
           <Player
             initialPlayerName="Player 2"
             playerSymbole="O"
             isActive={activePlayer === "O"}
+            players={handlePlayers}
           />
         </ol>
         <GameBoard onSelectPlayer={handleActivePlayer} board={gameBoard} />

@@ -1,7 +1,12 @@
 import React, { useState } from "react";
 // import 'useState' from React
 
-export default function player({ initialPlayerName, playerSymbole, isActive }) {
+export default function player({
+  initialPlayerName,
+  playerSymbole,
+  isActive,
+  players,
+}) {
   const [isEditing, setIsEditing] = useState(false);
   const [playerName, setPlayerName] = useState(initialPlayerName);
   function editHandler(event) {
@@ -12,6 +17,7 @@ export default function player({ initialPlayerName, playerSymbole, isActive }) {
     // setIsEditing(!isEditing);
 
     setIsEditing((previousValue) => !previousValue);
+    if (isEditing) players(playerSymbole, playerName);
 
     // realtime data    edit data
     // setIsEditing((previousValue)=>   !previousValue);
